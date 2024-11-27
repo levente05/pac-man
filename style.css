@@ -1,0 +1,119 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  margin: 0;
+  padding: 20px;
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  color: #ff0;
+  text-shadow: 2px 2px 10px #f00;
+}
+
+.info {
+  display: flex;
+  gap: 20px;
+  margin: 10px 0;
+}
+
+#start-button,
+#minigame-exit {
+  padding: 10px 20px;
+  background-color: #ff0;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#start-button:hover,
+#minigame-exit:hover {
+  background-color: #ffd700;
+}
+
+#game-board,
+#minigame-board {
+  display: grid;
+  grid-template-columns: repeat(20, 30px);
+  grid-template-rows: repeat(20, 30px);
+  gap: 2px;
+  margin-top: 20px;
+}
+
+.cell {
+  width: 30px;
+  height: 30px;
+  background-color: #111;
+  border: 1px solid #333;
+}
+
+.wall {
+  background-color: #555;
+}
+
+.point {
+  background-color: #ff0;
+  border-radius: 50%;
+}
+
+.pacman {
+  background-color: yellow;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: rotate(0deg); /* Alapértelmezett: jobbra néz */
+}
+
+.pacman::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  transform: translate(-50%, -50%);
+  animation: chomping 0.5s infinite alternate;
+}
+
+.pacman.right {
+  transform: rotate(0deg);
+}
+
+.pacman.left {
+  transform: rotate(180deg);
+}
+
+.pacman.up {
+  transform: rotate(270deg);
+}
+
+.pacman.down {
+  transform: rotate(90deg);
+}
+
+.ghost {
+  background-color: red;
+  border-radius: 50%;
+  box-shadow: 0 0 10px red;
+}
+
+/* Animáció a Pac-Man szájának nyitására */
+@keyframes chomping {
+  0% {
+    clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(25% 0%, 100% 50%, 25% 100%);
+  }
+}
