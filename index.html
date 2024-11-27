@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pac-Man Játék</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Pac-Man Játék</h1>
+    <div class="info">
+      <p>Pontszám: <span id="score">0</span></p>
+      <p>Életek: <span id="lives">3</span></p>
+      <p>Szint: <span id="level">1</span></p>
+    </div>
+    <button id="start-button">Játék indítása</button>
+    <div id="game-board"></div>
+    <div id="minigame" class="hidden">
+      <h2>Minijáték: +1 Élet</h2>
+      <p>Kerüld el a szellemet 10 másodpercig!</p>
+      <div id="minigame-board"></div>
+      <button id="minigame-exit" class="hidden">Vissza a fő játékhoz</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
