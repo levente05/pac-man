@@ -9,7 +9,6 @@ let points = [];
 let score = 0;
 let lives = 3;
 let level = 1;
-let minigamePlayed = false;
 
 // Véletlenszerű falgenerálás (pontok elérhetőségével)
 function generateWalls() {
@@ -77,8 +76,18 @@ function createBoard() {
 function updateBoard() {
   const cells = document.querySelectorAll(".cell");
   cells.forEach((cell, index) => {
-    cell.classList.remove("pacman", "ghost", "point");
-    if (index === pacManPosition) cell.classList.add("pacman");
+    cell.classList.remove(
+      "pacman",
+      "ghost",
+      "point",
+      "right",
+      "left",
+      "up",
+      "down"
+    );
+    if (index === pacManPosition) {
+      cell.classList.add("pacman", currentDirection);
+    }
     if (ghostPositions.includes(index)) cell.classList.add("ghost");
     if (points.includes(index)) cell.classList.add("point");
   });
@@ -115,27 +124,6 @@ document.addEventListener("keydown", (e) => {
     checkCollisions();
   }
 });
-
-// Tábla frissítése
-function updateBoard() {
-  const cells = document.querySelectorAll(".cell");
-  cells.forEach((cell, index) => {
-    cell.classList.remove(
-      "pacman",
-      "ghost",
-      "point",
-      "right",
-      "left",
-      "up",
-      "down"
-    );
-    if (index === pacManPosition) {
-      cell.classList.add("pacman", currentDirection);
-    }
-    if (ghostPositions.includes(index)) cell.classList.add("ghost");
-    if (points.includes(index)) cell.classList.add("point");
-  });
-}
 
 // Pontgyűjtés
 function eatPoint() {
@@ -174,9 +162,7 @@ function checkCollisions() {
   if (ghostPositions.includes(pacManPosition)) {
     lives--;
     document.getElementById("lives").textContent = lives;
-    if (lives <= 0 && !minigamePlayed) {
-      startMiniGame();
-    } else if (lives <= 0) {
+    if (lives <= 0) {
       alert("Game Over!");
       resetGame();
     } else {
@@ -184,7 +170,6 @@ function checkCollisions() {
     }
   }
 }
-
 
 // Következő szint
 function nextLevel() {
@@ -211,7 +196,6 @@ function resetGame() {
   pacManPosition = 210;
   ghostPositions = [188, 191, 171];
   walls = generateWalls();
-  minigamePlayed = false;
   document.getElementById("score").textContent = score;
   document.getElementById("lives").textContent = lives;
   document.getElementById("level").textContent = level;
