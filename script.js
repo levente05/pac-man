@@ -185,36 +185,6 @@ function checkCollisions() {
   }
 }
 
-// Minijáték indítása
-function startMiniGame() {
-  minigamePlayed = true; // Csak egyszer játszható
-  alert("Minijáték: Tarts ki 30 másodpercig a szellemek elkerülésével!");
-
-  // Minijáték tábla beállítása
-  width = 10;
-  height = 10;
-  ghostPositions = [14, 85];
-  pacManPosition = 55;
-  walls = []; // Nincsenek falak a minijátékban
-  createBoard();
-
-  let timeLeft = 30;
-  const timer = setInterval(() => {
-    moveGhosts();
-    updateBoard();
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      alert("+1 élet! Visszatérés a főjátékhoz.");
-      lives = 1;
-      document.getElementById("lives").textContent = lives;
-      width = 20;
-      height = 20;
-      resetLevel();
-    } else {
-      timeLeft--;
-    }
-  }, 500);
-}
 
 // Következő szint
 function nextLevel() {
